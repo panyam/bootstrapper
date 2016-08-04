@@ -1,0 +1,33 @@
+
+Introduction
+------------
+
+This bootstrapper module/package allows us to either create new appengine projects (using a template)
+or to bootstrap all necessary dependencies to our own internal libs and packages without having to 
+go through requirements.txt
+
+
+Usage
+-----
+
+Once an appengine project is checked out (the creator is coming soon), it must have a requirements.txt
+and a package_spec.json.
+
+The requirements.txt file tells where to get 3P packages that are available in the public domain.
+
+The package_spec.json tells what packages/modules that we have written privately (and stored in bitbucket)
+we need and are dependant upon.  To run the bootstrapper, do the following:
+
+```
+cd <appengine project dir>
+<path_to_this_bootstrapper_project>/bin/bootstrap.py
+```
+
+That's it. 
+
+If there are no errors, the following should happen:
+
+1. Will ensure we are currently within a virtualenv.
+2. Ensure that all requirements in the requirements.txt file have been installed into the proj_root/lib folder.
+3. Ensure that all dependencies specified in package_spec.json have been installed into the proj_root/deps folder.
+4. Ensures that the dependency source roots have been added to appengine_config.py
