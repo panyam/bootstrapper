@@ -1,4 +1,3 @@
-
 Introduction
 ------------
 
@@ -31,3 +30,14 @@ If there are no errors, the following should happen:
 2. Ensure that all requirements in the requirements.txt file have been installed into the proj_root/lib folder.
 3. Ensure that all dependencies specified in package_spec.json have been installed into the proj_root/deps folder.
 4. Ensures that the dependency source roots have been added to appengine_config.py
+
+Now when you run dev_appserver.py in the project you are in, it should not complain about our own dependencies.
+
+Doing this has several benefits:
+
+1. Going through requirements.txt means we have to create a setup.py file and pip has issues working with bitbucket and is just a lot of work to get this right.
+2. We can always be working on the head (working off a branch or git tag coming soon).   You could quickly test local changes from the deps folder and it will get picked up straight away.
+
+Downsides:
+1. Git tag and versioned usage not yet available.
+2. Transitively pulling packages is not yet available as we havent yet standardized on the package_json structure.
