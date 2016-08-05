@@ -19,7 +19,7 @@ def install_requirements(proj_dir = "."):
     if os.path.isfile(req_file):
         with lcd(proj_dir):
             local("mkdir -p lib")
-            local("pip install -r %s --root lib" % req_file)
+            local("pip install -r %s -t lib" % req_file)
 
 def install_dependencies(proj_dir = "."):
     """
@@ -50,7 +50,7 @@ def install_dependencies(proj_dir = "."):
 
                 vendor_line = "vendor.add('deps/%s')" % srcroot
                 if vendor_line not in config_lines:
-                    config_lines += vendor_line
+                    config_lines.append(vendor_line)
 
         # Modify the appengine_config.py file to include these dependencies
         with open(appengine_config_path, "w") as configfile:
