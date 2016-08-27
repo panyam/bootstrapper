@@ -14,7 +14,7 @@ and a package_spec.json.
 
 The requirements.txt file tells where to get 3P packages that are available in the public domain.
 
-The package_spec.json tells what packages/modules that we have written privately (and stored in bitbucket)
+The package_spec.json tells what packages/modules that we have written privately (and stored in github or bitbucket)
 we need and are dependant upon.  To run the bootstrapper, do the following:
 
 ```
