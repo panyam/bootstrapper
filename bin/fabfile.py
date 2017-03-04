@@ -35,8 +35,10 @@ def install_dependencies(proj_dir = "."):
         currdir = os.path.abspath(os.curdir)
         package_spec = json.loads(open("./package_spec.json").read())
 
+        config_lines = []
         appengine_config_path = os.path.join(proj_dir, "appengine_config.py")
-        config_lines = [l.strip() for l in open(appengine_config_path).read().split("\n") if l.strip()]
+        if os.path.isfile(appengine_config_path):
+            config_lines = [l.strip() for l in open(appengine_config_path).read().split("\n") if l.strip()]
 
         for dep in package_spec.get("dependencies", []):
             name = dep["name"]
@@ -53,5 +55,6 @@ def install_dependencies(proj_dir = "."):
                     config_lines.append(vendor_line)
 
         # Modify the appengine_config.py file to include these dependencies
-        with open(appengine_config_path, "w") as configfile:
-            configfile.write("\n".join(config_lines))
+        if os.path.isfile(appengine_config_path):
+            with open(appengine_config_path, "w") as configfile:
+                configfile.write("\n".join(config_lines))
