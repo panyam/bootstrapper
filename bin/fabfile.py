@@ -18,8 +18,12 @@ def install_requirements(proj_dir = "."):
     req_file = os.path.join(proj_dir, "requirements.txt")
     if os.path.isfile(req_file):
         with lcd(proj_dir):
-            local("mkdir -p .lib")
-            local("pip install -r %s -t .lib" % req_file)
+            local("mkdir -p lib")
+            local("pip install -r %s -t lib" % req_file)
+    bower_file = os.path.join(proj_dir, "bower.json")
+    if os.path.isfile(bower_file):
+        with lcd(proj_dir):
+            local("bower install")
 
 def install_dependencies(proj_dir = "."):
     """
